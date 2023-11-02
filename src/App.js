@@ -4,6 +4,7 @@ import './App.css';
 import Footer from './componenet/Footer';
 import Hader from './componenet/Hader';
 import Home from './pages/Home';
+import CartDisplay from './componenet/CartDisplay';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
 
         <Routes>
           <Route path='/' element={<Home/>}/>
+          <Route path='/CartDisplay/:id' element={<CartDisplay/>}/>
         </Routes>
 
         <Footer/>

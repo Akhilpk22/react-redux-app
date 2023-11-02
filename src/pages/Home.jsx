@@ -7,7 +7,7 @@ import { fetchRestaurants } from '../redux/RestaurantSlice';
 
 function Home() {
 
-    const allresturant = useSelector((state)=>state.RestaurantSlice.allrestaurant)
+    const {allrestaurant,loading,error} = useSelector((state)=>state.RestaurantSlice);
     // console.log(useSelector((state)=>state.RestaurantSlice.allresturant));
 
     const dispatch = useDispatch()
@@ -17,15 +17,27 @@ function Home() {
 
   return (
     <>
-        <Row className='mt-5'>
-
+        <div className='d-flex justify-content-center align-items-center '>
             {
-                allresturant?.length>0?allresturant.map(restaurants=>(
+                loading &&  
+                <div>
+                    <h1 className='text-info'>loading </h1>
+                </div>
+                
+                
+            }
+
+        </div>
+        <Row className='mt-5'>
+            {
+                allrestaurant?.length>0?allrestaurant.map(restaurants=>(
                 <Col className='px-3 py-3' sm={12} md={6} lg={4} xl={3}>
                <RestCard restaurants={restaurants} />
                </Col>
                 ))
-                :<p>nothing</p>
+                :(
+                    <p>nothing to display</p>
+                )
             }
         </Row>
     </>
